@@ -38,8 +38,10 @@
     <actions>
         <!-- Add your actions here -->
         <action id="codingCounter" class="com.maff.codingcounter.CodingCounter" text="CodingCounter"
-                description="Coding counter ">
+                description="Coding counter " popup="true">
             <add-to-group group-id="ViewMenu" anchor="after" relative-to-action="ToolWindowsGroup"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 
