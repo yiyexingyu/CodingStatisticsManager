@@ -1,4 +1,4 @@
-package com.maff.codingcounter.data;
+package com.maff.codingstatisticmanager.data;
 
 /**
  * 用来保存各种情况下的字符个数

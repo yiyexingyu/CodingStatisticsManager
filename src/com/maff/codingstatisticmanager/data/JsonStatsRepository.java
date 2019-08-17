@@ -1,4 +1,4 @@
-package com.maff.codingcounter.data;
+package com.maff.codingstatisticmanager.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,4 +1,4 @@
-package com.maff.codingcounter;
+package com.maff.codingstatisticmanager;
 
 import com.intellij.concurrency.JobScheduler;
 import com.intellij.ide.util.projectWizard.actions.ProjectSpecificAction;
@@ -16,8 +16,8 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.wm.impl.ProjectWindowAction;
 import com.intellij.platform.AttachProjectAction;
-import com.maff.codingcounter.data.CodingStats;
-import com.maff.codingcounter.data.DatabaseStatsRepository;
+import com.maff.codingstatisticmanager.data.CodingStats;
+import com.maff.codingstatisticmanager.data.DatabaseStatsRepository;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;

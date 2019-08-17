@@ -48,7 +48,7 @@ class GetPsiFromVirtualTestAction extends AnAction {
 ```
  - 从一个Document中获取：PsiDocumentManager.getInstance(project).getPsiFile(Document), 例子：  
  ``` Java
-class PsiGetFromDocumentTestAction extends AnAction {
+class GetPsiFromDocumentTestAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -66,5 +66,22 @@ class PsiGetFromDocumentTestAction extends AnAction {
  ``` Java
 psiElement.getContainingFile()
 ```
+- 在project中获取指定名字的文件，可以使用FileNameIndex的静态函数getFilesByName(project, name, scope)
+```
+class GetPsiFilesByNameTestAction extends AnAction {
+
+    @Override
+    public void actionPerformed(AnActionEvent e) {
+        // TODO: insert action logic here
+        Project project = CommonDataKeys.PROJECT.getData(e.getDataContext());
+        Editor editorData = CommonDataKeys.EDITOR.getData(e.getDataContext());
+        PsiFile[] psiFiles = FilenameIndex.getFilesByName(project, "test", GlobalSearchScope.everythingScope(project));
+    }
+}
+```
+# PSI File可以干什么  
+大多有趣的修改操作是在单个PSI元素的级别上执行的，而不是在文件这整体上操作  
+遍历一个文件中的所有元素：psiFile.accept(new PsiRecursiveElementWalkingVisitor()...)
+
 
 

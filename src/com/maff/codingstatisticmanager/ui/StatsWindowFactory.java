@@ -1,6 +1,5 @@
-package com.maff.codingcounter.ui;
+package com.maff.codingstatisticmanager.ui;
 
-import com.intellij.concurrency.JobLauncher;
 import com.intellij.concurrency.JobScheduler;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ServiceManager;
@@ -11,10 +10,10 @@ import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.table.JBTable;
-import com.maff.codingcounter.AppComponent;
-import com.maff.codingcounter.data.CodingStats;
-import com.maff.codingcounter.data.Period;
-import com.maff.codingcounter.data.PeriodStats;
+import com.maff.codingstatisticmanager.AppComponent;
+import com.maff.codingstatisticmanager.data.CodingStats;
+import com.maff.codingstatisticmanager.data.Period;
+import com.maff.codingstatisticmanager.data.PeriodStats;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -84,8 +83,8 @@ public class StatsWindowFactory implements com.intellij.openapi.wm.ToolWindowFac
 
             JBTable table = new JBTable(tableModel);
             table.setStriped(true);
-            table.setFocusable(false);
-            table.setRowSelectionAllowed(false);
+            table.setFocusable(true);
+            table.setRowSelectionAllowed(true);
             tables.put(period, tableModel);
 
             contentWrapper.add(table.getTableHeader());
@@ -146,6 +145,8 @@ public class StatsWindowFactory implements com.intellij.openapi.wm.ToolWindowFac
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
+
+        System.out.println("creating tool window ");
 
         this.window = toolWindow;
         createUi();

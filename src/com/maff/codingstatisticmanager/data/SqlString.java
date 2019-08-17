@@ -1,4 +1,4 @@
-package com.maff.codingcounter.data;
+package com.maff.codingstatisticmanager.data;
 
 import java.util.HashMap;
 import java.util.Map;

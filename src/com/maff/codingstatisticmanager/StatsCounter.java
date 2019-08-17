@@ -1,4 +1,4 @@
-package com.maff.codingcounter;
+package com.maff.codingstatisticmanager;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -7,11 +7,10 @@ import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actions.*;
 import com.intellij.openapi.ide.CopyPasteManager;
-import com.maff.codingcounter.data.CodingStats;
-import com.maff.codingcounter.data.DatabaseStatsRepository;
-import com.maff.codingcounter.data.Period;
-import com.maff.codingcounter.data.PeriodStats;
-import groovy.util.Factory;
+import com.maff.codingstatisticmanager.data.CodingStats;
+import com.maff.codingstatisticmanager.data.DatabaseStatsRepository;
+import com.maff.codingstatisticmanager.data.Period;
+import com.maff.codingstatisticmanager.data.PeriodStats;
 
 import java.awt.datatransfer.DataFlavor;
 import java.util.Calendar;

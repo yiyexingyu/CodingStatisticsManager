@@ -1,6 +1,6 @@
-package com.maff.codingcounter.ui;
+package com.maff.codingstatisticmanager.ui;
 
-import com.maff.codingcounter.data.Period;
+import com.maff.codingstatisticmanager.data.Period;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,12 +1,10 @@
-package com.maff.codingcounter;
+package com.maff.codingstatisticmanager;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ServiceManager;
-import com.maff.codingcounter.data.CodingStats;
-import com.maff.codingcounter.data.DatabaseStatsRepository;
-import com.maff.codingcounter.data.JsonStatsRepository;
-import com.maff.codingcounter.data.StatsRepository;
-import com.maff.codingcounter.ui.StatsWindowFactory;
+import com.maff.codingstatisticmanager.data.CodingStats;
+import com.maff.codingstatisticmanager.data.DatabaseStatsRepository;
+import com.maff.codingstatisticmanager.ui.StatsWindowFactory;
 
 public class AppComponent implements StatsWindowFactory.CallBack {
     private DatabaseStatsRepository dbRepository;

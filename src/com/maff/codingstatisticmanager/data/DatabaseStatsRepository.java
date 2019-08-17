@@ -1,4 +1,4 @@
-package com.maff.codingcounter.data;
+package com.maff.codingstatisticmanager.data;
 
 import java.sql.*;
 
@@ -11,7 +11,6 @@ public class DatabaseStatsRepository {
 
     private String connectMessage;
     private Connection connection = null;
-    private Statement statement = null;
 
     public String getConnectMessage() {
         return connectMessage;
@@ -23,10 +22,13 @@ public class DatabaseStatsRepository {
         this.connectMessage = connectToDatabase();
     }
 
+    public static void initDatabaseStatsRepository(String jdbc_device, String db_url, String user, String password){
+
+    }
+
     public static DatabaseStatsRepository getInstance() {
         if (instance == null) {
             instance = new DatabaseStatsRepository();
-            System.out.println(instance.getConnectMessage());
         }
         return instance;
     }
@@ -40,7 +42,6 @@ public class DatabaseStatsRepository {
 
             // 连接数据库
             this.connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            this.statement = this.connection.createStatement();
             resultMessage = "数据库连接成功";
 
         } catch (ClassNotFoundException e) {
@@ -54,22 +55,14 @@ public class DatabaseStatsRepository {
     }
 
     public void disconnectDatabase() {
-        try {
-            if (this.statement != null) this.statement.close();
-        } catch (SQLException ignored) {
-        }
-
-        try {
-            if (this.connection != null) this.connection.close();
-        } catch (SQLException ignored) {
-        }
+        try { if (this.connection != null) this.connection.close(); } catch (SQLException ignored) { }
     }
 
-    public int calculateTotalCount(PeriodStats periodStats) {
+    private int calculateTotalCount(PeriodStats periodStats) {
         return 0;
     }
 
-    public int calculateValidCount(PeriodStats periodStats) {
+    private int calculateValidCount(PeriodStats periodStats) {
         return 0;
     }
 
@@ -109,7 +102,8 @@ public class DatabaseStatsRepository {
             try { if (preparedStatement != null) preparedStatement.close(); } catch (SQLException ignored) { }
         }
     }
-    public void updateDataToDb(Period period, PeriodStats periodStats) {
+
+    private void updateDataToDb(Period period, PeriodStats periodStats) {
         System.out.println("准备更新数据：" + period.name());
         PreparedStatement preparedStatement = null;
         try {
@@ -136,7 +130,8 @@ public class DatabaseStatsRepository {
         }
         System.out.println("更新数据完成：" + period.name());
     }
-    public PeriodStats selectLastPeriodStats(Period period) {
+
+    private PeriodStats getLastPeriodStats(Period period) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         PeriodStats periodStats = new PeriodStats();
@@ -156,7 +151,7 @@ public class DatabaseStatsRepository {
                 periodStats.insert = resultSet.getInt("insert_coding_count");
             } else {
                 insertDataToDb(period, new PeriodStats());
-                periodStats = selectLastPeriodStats(period);
+                periodStats = getLastPeriodStats(period);
             }
 
         } catch (SQLException ignored) {} finally {
@@ -190,6 +185,7 @@ public class DatabaseStatsRepository {
 
         return last_id;
     }
+
     private long getLastEventTime() {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -210,6 +206,7 @@ public class DatabaseStatsRepository {
 
         return last_event_time;
     }
+
     public void updateLastEventTime(long time){
         PreparedStatement preparedStatement = null;
         try {
@@ -228,12 +225,10 @@ public class DatabaseStatsRepository {
     public CodingStats loadLastCodingStats() {
 
         CodingStats codingStats = new CodingStats();
-
         codingStats.lastEventTime = this.getLastEventTime();
-        codingStats.periods.put(Period.今天, this.selectLastPeriodStats(Period.今天));
-        codingStats.periods.put(Period.本周, this.selectLastPeriodStats(Period.本周));
-        codingStats.periods.put(Period.本月, this.selectLastPeriodStats(Period.本月));
-
+        codingStats.periods.put(Period.今天, this.getLastPeriodStats(Period.今天));
+        codingStats.periods.put(Period.本周, this.getLastPeriodStats(Period.本周));
+        codingStats.periods.put(Period.本月, this.getLastPeriodStats(Period.本月));
         return codingStats;
     }
 

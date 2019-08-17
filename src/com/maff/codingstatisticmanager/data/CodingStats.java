@@ -1,9 +1,6 @@
-package com.maff.codingcounter.data;
-
-import groovy.util.Factory;
+package com.maff.codingstatisticmanager.data;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class CodingStats {

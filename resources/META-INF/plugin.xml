@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>com.your.company.unique.plugin.id</id>
-    <name>this is my first _plugin</name>
+    <id>com.yiyexinyu.CodingStatisticManager</id>
+    <name>CodingStatisticManager</name>
     <version>1.0</version>
-    <vendor email="2958029539@qq.com">my first _plugin</vendor>
+    <vendor email="2958029539@qq.com">CodingStatisticManager</vendor>
 
     <description><![CDATA[
       这是我第一个插件工程， 练习插件的编写。balabababababbababababa <br>
@@ -27,18 +27,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <toolWindow
-                id="Coding Counter"
+                id="Coding Statistic"
                 anchor="right"
-                factoryClass="com.maff.codingcounter.ui.StatsWindowFactory"
+                factoryClass="com.maff.codingstatisticmanager.ui.StatsWindowFactory"
                 icon="/img/ic_chart_bar.png"
         />
-        <applicationService serviceImplementation="com.maff.codingcounter.AppComponent"/>
+        <applicationService serviceImplementation="com.maff.codingstatisticmanager.AppComponent"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="codingCounter" class="com.maff.codingcounter.CodingCounter" text="CodingCounter"
-                description="Coding counter " popup="true">
+        <action id="LOCStatistic" class="com.maff.codingstatisticmanager.LOCStatistic" text="LOCStatistic"
+                description="统计代码行" popup="true">
             <add-to-group group-id="ViewMenu" anchor="after" relative-to-action="ToolWindowsGroup"/>
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
